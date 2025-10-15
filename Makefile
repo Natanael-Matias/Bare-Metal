@@ -1,16 +1,27 @@
 CC = arm-none-eabi-gcc
+OBJDUMP = arm-none-eabi-objdump
 MACH = cortex-m4
 CFLAGS = -c -mcpu=$(MACH) -mthumb -std=gnu11 -O0
 
 SRC = $(wildcard src/*.c)
 OBJ = $(patsubst src/%.c, obj/%.o, $(SRC))
+DUMP = $(patsubst src/%.c, debug/%.s, $(SRC))
 
 program: $(OBJ)
 	@echo "finalizado."
+
+debug: $(DUMP)
+	@echo "finalizado."
+
+debug/%.s: obj/%.o | dump
+	$(OBJDUMP) -D $< > $@
 
 obj/%.o: src/%.c | obj
 	@echo "Compilando $<..."
 	@$(CC) $(CFLAGS) -Iinc -o $@ $<
 
 obj:
-	mkdir obj
+	mkdir -p obj
+
+dump:
+	mkdir -p debug
