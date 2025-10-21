@@ -8,6 +8,8 @@
 #ifndef MAIN_H_
 #define MAIN_H_
 
+#include <stdint.h>
+
 void IdleHandler(void);
 void Task1Handler(void);
 void Task2Handler(void);

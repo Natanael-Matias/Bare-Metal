@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "task_scheduler.h": "c",
+        "systick.h": "c",
+        "main.h": "c"
+    }
+}
