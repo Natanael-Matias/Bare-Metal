@@ -36,3 +36,6 @@ dump:
 
 clean:
 	rm -rf obj debug *.o *.s *.elf *.map
+
+load:
+	openocd -f board/stm32f429discovery.cfg
