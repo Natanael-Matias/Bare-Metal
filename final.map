@@ -14,154 +14,169 @@ LOAD obj/main.o
 LOAD obj/stm32f4xx_startup.o
 LOAD obj/task_scheduler.o
 
-.text           0x08000000      0x8e8
+.text           0x08000000      0x90c
  *(.isr_vector)
- .isr_vector    0x08000000      0x188 obj/stm32f4xx_startup.o
+ .isr_vector    0x08000000      0x1ac obj/stm32f4xx_startup.o
                 0x08000000                vector
  *(.text)
- .text          0x08000188      0x134 obj/SysTick.o
-                0x08000188                SysTickReload
-                0x080001cc                SysTickInit
-                0x08000248                SysTickConfig
-                0x08000270                GetTick
-                0x08000284                UpdateTick
-                0x080002a0                SysTick_Handler
- .text          0x080002bc      0x268 obj/led.o
-                0x080002bc                LedInit
-                0x0800042c                LedOn
-                0x080004a8                LedOff
- .text          0x08000524       0xc0 obj/main.o
-                0x08000524                main
-                0x08000538                Task1Handler
-                0x08000578                Task2Handler
-                0x080005b8                Task3Handler
-                0x080005be                Task4Handler
-                0x080005c4                IdleHandler
-                0x080005ca                HardFault_Handler
-                0x080005d0                UsageFault_Handler
-                0x080005d6                MemManage_Handler
-                0x080005dc                BusFault_Handler
- .text          0x080005e4       0x8c obj/stm32f4xx_startup.o
-                0x080005e4                RTC_Alarm_IRQHandler
-                0x080005e4                HASH_RNG_IRQHandler
-                0x080005e4                EXTI2_IRQHandler
-                0x080005e4                TIM8_CC_IRQHandler
-                0x080005e4                DebugMon_Handler
-                0x080005e4                TIM1_CC_IRQHandler
-                0x080005e4                DMA2_Stream5_IRQHandler
-                0x080005e4                DMA1_Stream5_IRQHandler
-                0x080005e4                PVD_IRQHandler
-                0x080005e4                SDIO_IRQHandler
-                0x080005e4                TAMP_STAMP_IRQHandler
-                0x080005e4                NMI_Handler
-                0x080005e4                CAN2_RX1_IRQHandler
-                0x080005e4                EXTI3_IRQHandler
-                0x080005e4                TIM8_TRG_COM_TIM14_IRQHandler
-                0x080005e4                TIM1_UP_TIM10_IRQHandler
-                0x080005e4                TIM8_UP_TIM13_IRQHandler
-                0x080005e4                I2C3_ER_IRQHandler
-                0x080005e4                EXTI0_IRQHandler
-                0x080005e4                I2C2_EV_IRQHandler
-                0x080005e4                DMA1_Stream2_IRQHandler
-                0x080005e4                CAN1_RX0_IRQHandler
-                0x080005e4                FPU_IRQHandler
-                0x080005e4                OTG_HS_WKUP_IRQHandler
-                0x080005e4                CAN2_SCE_IRQHandler
-                0x080005e4                DMA2_Stream2_IRQHandler
-                0x080005e4                SPI1_IRQHandler
-                0x080005e4                TIM6_DAC_IRQHandler
-                0x080005e4                TIM1_BRK_TIM9_IRQHandler
-                0x080005e4                DCMI_IRQHandler
-                0x080005e4                CAN2_RX0_IRQHandler
-                0x080005e4                DMA2_Stream3_IRQHandler
-                0x080005e4                USART6_IRQHandler
-                0x080005e4                USART3_IRQHandler
-                0x080005e4                CRYP_IRQHandler
-                0x080005e4                DMA2_Stream6_IRQHandler
-                0x080005e4                CAN1_RX1_IRQHandler
-                0x080005e4                UART5_IRQHandler
-                0x080005e4                DMA2_Stream0_IRQHandler
-                0x080005e4                TIM4_IRQHandler
-                0x080005e4                I2C1_EV_IRQHandler
-                0x080005e4                DMA1_Stream6_IRQHandler
-                0x080005e4                DMA1_Stream1_IRQHandler
-                0x080005e4                UART4_IRQHandler
-                0x080005e4                TIM3_IRQHandler
-                0x080005e4                RCC_IRQHandler
-                0x080005e4                TIM8_BRK_TIM12_IRQHandler
-                0x080005e4                Default_Handler
-                0x080005e4                EXTI15_10_IRQHandler
-                0x080005e4                ADC_IRQHandler
-                0x080005e4                DMA1_Stream7_IRQHandler
-                0x080005e4                TIM7_IRQHandler
-                0x080005e4                CAN2_TX_IRQHandler
-                0x080005e4                TIM5_IRQHandler
-                0x080005e4                DMA2_Stream7_IRQHandler
-                0x080005e4                I2C3_EV_IRQHandler
-                0x080005e4                EXTI9_5_IRQHandler
-                0x080005e4                RTC_WKUP_IRQHandler
-                0x080005e4                ETH_WKUP_IRQHandler
-                0x080005e4                SPI2_IRQHandler
-                0x080005e4                OTG_HS_EP1_IN_IRQHandler
-                0x080005e4                DMA1_Stream0_IRQHandler
-                0x080005e4                CAN1_TX_IRQHandler
-                0x080005e4                SVC_Handler
-                0x080005e4                EXTI4_IRQHandler
-                0x080005e4                FSMC_IRQHandler
-                0x080005e4                ETH_IRQHandler
-                0x080005e4                OTG_HS_EP1_OUT_IRQHandler
-                0x080005e4                WWDG_IRQHandler
-                0x080005e4                TIM2_IRQHandler
-                0x080005e4                OTG_FS_WKUP_IRQHandler
-                0x080005e4                TIM1_TRG_COM_TIM11_IRQHandler
-                0x080005e4                OTG_HS_IRQHandler
-                0x080005e4                EXTI1_IRQHandler
-                0x080005e4                USART2_IRQHandler
-                0x080005e4                I2C2_ER_IRQHandler
-                0x080005e4                DMA2_Stream1_IRQHandler
-                0x080005e4                CAN1_SCE_IRQHandler
-                0x080005e4                DMA2_Stream4_IRQHandler
-                0x080005e4                USART1_IRQHandler
-                0x080005e4                OTG_FS_IRQHandler
-                0x080005e4                SPI3_IRQHandler
-                0x080005e4                DMA1_Stream4_IRQHandler
-                0x080005e4                I2C1_ER_IRQHandler
-                0x080005e4                DMA1_Stream3_IRQHandler
-                0x080005ea                Reset_Handler
- .text          0x08000670      0x278 obj/task_scheduler.o
-                0x08000670                AppInit
-                0x080006b0                AppStart
-                0x080006c4                TaskWait
-                0x08000708                InitTasksStack
-                0x0800079c                InitSchedulerStack
-                0x080007a4                GetPSPValue
-                0x0800080c                SwitchToPSP
-                0x08000826                SavePSP
-                0x08000850                UpdateNextTask
-                0x080008c0                PendSV_Handler
+ .text          0x080001ac      0x134 obj/SysTick.o
+                0x080001ac                SysTickReload
+                0x080001f0                SysTickInit
+                0x0800026c                SysTickConfig
+                0x08000294                GetTick
+                0x080002a8                UpdateTick
+                0x080002c4                SysTick_Handler
+ .text          0x080002e0      0x268 obj/led.o
+                0x080002e0                LedInit
+                0x08000450                LedOn
+                0x080004cc                LedOff
+ .text          0x08000548       0xc0 obj/main.o
+                0x08000548                main
+                0x0800055c                Task1Handler
+                0x0800059c                Task2Handler
+                0x080005dc                Task3Handler
+                0x080005e2                Task4Handler
+                0x080005e8                IdleHandler
+                0x080005ee                HardFault_Handler
+                0x080005f4                UsageFault_Handler
+                0x080005fa                MemManage_Handler
+                0x08000600                BusFault_Handler
+ .text          0x08000608       0x8c obj/stm32f4xx_startup.o
+                0x08000608                RTC_Alarm_IRQHandler
+                0x08000608                HASH_RNG_IRQHandler
+                0x08000608                EXTI2_IRQHandler
+                0x08000608                TIM8_CC_IRQHandler
+                0x08000608                DebugMon_Handler
+                0x08000608                UART8_IRQHandler
+                0x08000608                SPI4_IRQHandler
+                0x08000608                TIM1_CC_IRQHandler
+                0x08000608                DMA2_Stream5_IRQHandler
+                0x08000608                DMA1_Stream5_IRQHandler
+                0x08000608                PVD_IRQHandler
+                0x08000608                SDIO_IRQHandler
+                0x08000608                TAMP_STAMP_IRQHandler
+                0x08000608                NMI_Handler
+                0x08000608                CAN2_RX1_IRQHandler
+                0x08000608                EXTI3_IRQHandler
+                0x08000608                TIM8_TRG_COM_TIM14_IRQHandler
+                0x08000608                TIM1_UP_TIM10_IRQHandler
+                0x08000608                TIM8_UP_TIM13_IRQHandler
+                0x08000608                I2C3_ER_IRQHandler
+                0x08000608                LCD_TFT_IRQHandler
+                0x08000608                EXTI0_IRQHandler
+                0x08000608                I2C2_EV_IRQHandler
+                0x08000608                DMA1_Stream2_IRQHandler
+                0x08000608                CAN1_RX0_IRQHandler
+                0x08000608                FPU_IRQHandler
+                0x08000608                OTG_HS_WKUP_IRQHandler
+                0x08000608                CAN2_SCE_IRQHandler
+                0x08000608                DMA2_Stream2_IRQHandler
+                0x08000608                SPI1_IRQHandler
+                0x08000608                TIM6_DAC_IRQHandler
+                0x08000608                TIM1_BRK_TIM9_IRQHandler
+                0x08000608                DCMI_IRQHandler
+                0x08000608                CAN2_RX0_IRQHandler
+                0x08000608                DMA2_Stream3_IRQHandler
+                0x08000608                USART6_IRQHandler
+                0x08000608                USART3_IRQHandler
+                0x08000608                CRYP_IRQHandler
+                0x08000608                SAI1_IRQHandler
+                0x08000608                CAN1_RX1_IRQHandler
+                0x08000608                UART5_IRQHandler
+                0x08000608                DMA2_Stream0_IRQHandler
+                0x08000608                TIM4_IRQHandler
+                0x08000608                I2C1_EV_IRQHandler
+                0x08000608                DMA1_Stream6_IRQHandler
+                0x08000608                DMA1_Stream1_IRQHandler
+                0x08000608                UART4_IRQHandler
+                0x08000608                LCD_TFT_1_IRQHandler
+                0x08000608                TIM3_IRQHandler
+                0x08000608                RCC_IRQHandler
+                0x08000608                TIM8_BRK_TIM12_IRQHandler
+                0x08000608                Default_Handler
+                0x08000608                EXTI15_10_IRQHandler
+                0x08000608                ADC_IRQHandler
+                0x08000608                DMA1_Stream7_IRQHandler
+                0x08000608                SPI5_IRQHandler
+                0x08000608                TIM7_IRQHandler
+                0x08000608                CAN2_TX_IRQHandler
+                0x08000608                TIM5_IRQHandler
+                0x08000608                DMA2_Stream7_IRQHandler
+                0x08000608                I2C3_EV_IRQHandler
+                0x08000608                EXTI9_5_IRQHandler
+                0x08000608                RTC_WKUP_IRQHandler
+                0x08000608                ETH_WKUP_IRQHandler
+                0x08000608                SPI2_IRQHandler
+                0x08000608                OTG_HS_EP1_IN_IRQHandler
+                0x08000608                DMA1_Stream0_IRQHandler
+                0x08000608                CAN1_TX_IRQHandler
+                0x08000608                SVC_Handler
+                0x08000608                EXTI4_IRQHandler
+                0x08000608                ETH_IRQHandler
+                0x08000608                OTG_HS_EP1_OUT_IRQHandler
+                0x08000608                WWDG_IRQHandler
+                0x08000608                SPI6_IRQHandler
+                0x08000608                TIM2_IRQHandler
+                0x08000608                OTG_FS_WKUP_IRQHandler
+                0x08000608                TIM1_TRG_COM_TIM11_IRQHandler
+                0x08000608                OTG_HS_IRQHandler
+                0x08000608                DMA2D_IRQHandler
+                0x08000608                EXTI1_IRQHandler
+                0x08000608                UART7_IRQHandler
+                0x08000608                USART2_IRQHandler
+                0x08000608                I2C2_ER_IRQHandler
+                0x08000608                DMA2_Stream1_IRQHandler
+                0x08000608                CAN1_SCE_IRQHandler
+                0x08000608                FLASH_IRQHandler
+                0x08000608                DMA2_Stream4_IRQHandler
+                0x08000608                USART1_IRQHandler
+                0x08000608                OTG_FS_IRQHandler
+                0x08000608                SPI3_IRQHandler
+                0x08000608                DMA1_Stream4_IRQHandler
+                0x08000608                I2C1_ER_IRQHandler
+                0x08000608                FMC_IRQHandler
+                0x08000608                DMA2_Stream6_IRQHandler
+                0x08000608                DMA1_Stream3_IRQHandler
+                0x0800060e                Reset_Handler
+ .text          0x08000694      0x278 obj/task_scheduler.o
+                0x08000694                AppInit
+                0x080006d4                AppStart
+                0x080006e8                TaskWait
+                0x0800072c                InitTasksStack
+                0x080007c0                InitSchedulerStack
+                0x080007c8                GetPSPValue
+                0x08000830                SwitchToPSP
+                0x0800084a                SavePSP
+                0x08000874                UpdateNextTask
+                0x080008e4                PendSV_Handler
+ *(.text.*)
+ *(.init)
+ *(.fini)
  *(.rodata)
-                0x080008e8                . = ALIGN (0x4)
-                0x080008e8                _etext = .
+ *(.rodata.*)
+                0x0800090c                . = ALIGN (0x4)
+                0x0800090c                _etext = .
+                0x0800090c                _la_data = LOADADDR (.data)
 
-.glue_7         0x080008e8        0x0
- .glue_7        0x080008e8        0x0 linker stubs
+.glue_7         0x0800090c        0x0
+ .glue_7        0x0800090c        0x0 linker stubs
 
-.glue_7t        0x080008e8        0x0
- .glue_7t       0x080008e8        0x0 linker stubs
+.glue_7t        0x0800090c        0x0
+ .glue_7t       0x0800090c        0x0 linker stubs
 
-.vfp11_veneer   0x080008e8        0x0
- .vfp11_veneer  0x080008e8        0x0 linker stubs
+.vfp11_veneer   0x0800090c        0x0
+ .vfp11_veneer  0x0800090c        0x0 linker stubs
 
-.v4_bx          0x080008e8        0x0
- .v4_bx         0x080008e8        0x0 linker stubs
+.v4_bx          0x0800090c        0x0
+ .v4_bx         0x0800090c        0x0 linker stubs
 
-.iplt           0x080008e8        0x0
- .iplt          0x080008e8        0x0 obj/SysTick.o
+.iplt           0x0800090c        0x0
+ .iplt          0x0800090c        0x0 obj/SysTick.o
 
-.rel.dyn        0x080008e8        0x0
- .rel.iplt      0x080008e8        0x0 obj/SysTick.o
+.rel.dyn        0x0800090c        0x0
+ .rel.iplt      0x0800090c        0x0 obj/SysTick.o
 
-.data           0x20000000       0x54 load address 0x080008e8
+.data           0x20000000       0x54 load address 0x0800090c
                 0x20000000                _sdata = .
  *(.data)
  .data          0x20000000        0x0 obj/SysTick.o
@@ -170,23 +185,30 @@ LOAD obj/task_scheduler.o
                 0x20000024                tasks
  .data          0x20000054        0x0 obj/stm32f4xx_startup.o
  .data          0x20000054        0x0 obj/task_scheduler.o
+ *(.data.*)
                 0x20000054                . = ALIGN (0x4)
                 0x20000054                _edata = .
 
-.igot.plt       0x20000054        0x0 load address 0x0800093c
+.igot.plt       0x20000054        0x0 load address 0x08000960
  .igot.plt      0x20000054        0x0 obj/SysTick.o
 
-.bss            0x20000054        0xc load address 0x0800093c
+.bss            0x20000054        0xc load address 0x08000960
                 0x20000054                _sbss = .
+                0x20000054                __sbss_start__ = _sbss
  *(.bss)
  .bss           0x20000054        0x4 obj/SysTick.o
  .bss           0x20000058        0x0 obj/led.o
  .bss           0x20000058        0x0 obj/main.o
  .bss           0x20000058        0x0 obj/stm32f4xx_startup.o
  .bss           0x20000058        0x8 obj/task_scheduler.o
+ *(.bss.*)
  *(COMMON)
                 0x20000060                . = ALIGN (0x4)
                 0x20000060                _ebss = .
+                0x20000060                _bss_end__ = _ebss
+                0x20000060                . = ALIGN (0x4)
+                0x20000060                end = .
+                0x20000060                __end__ = .
 OUTPUT(final.elf elf32-littlearm)
 LOAD linker stubs
 

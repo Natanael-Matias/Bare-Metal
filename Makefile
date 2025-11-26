@@ -8,7 +8,7 @@ SRC = $(wildcard src/*.c)
 OBJ = $(patsubst src/%.c, obj/%.o, $(SRC))
 DUMP = $(patsubst src/%.c, debug/%.s, $(SRC))
 
-program: $(OBJ) obj/stm32f4xx_startup.o final.elf
+all: $(OBJ) obj/stm32f4xx_startup.o final.elf
 	@echo "finalizado."
 
 debug: $(DUMP)
@@ -36,3 +36,6 @@ dump:
 
 clean:
 	rm -rf obj debug *.o *.s *.elf *.map
+
+load:
+	openocd -f board/stm32f429discovery.cfg

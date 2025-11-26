@@ -12,15 +12,22 @@ SECTIONS
     {
         *(.isr_vector)
         *(.text)
+        *(.text.*)
+        *(.init)
+        *(.fini)
         *(.rodata)
+        *(.rodata.*)
         . = ALIGN(4);
         _etext = .; /* Store the updated location counter value in to a symbol 'end_of_text' */
     }> FLASH
+
+    _la_data = LOADADDR(.data);
     
     .data :
     {
         _sdata = .;
         *(.data)
+        *(.data.*)
         . = ALIGN(4);
         _edata = .;
     }> SRAM AT> FLASH
@@ -28,10 +35,16 @@ SECTIONS
     .bss :
     {
         _sbss = .;
+        __sbss_start__ = _sbss;
         *(.bss)
+        *(.bss.*)
         *(COMMON)
         . = ALIGN(4);
         _ebss = .;
+        _bss_end__ = _ebss;
+        . = ALIGN(4);
+        end = .;
+        __end__ = .;
     }> SRAM
 }
 
