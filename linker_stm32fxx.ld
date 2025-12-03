@@ -35,13 +35,13 @@ SECTIONS
     .bss :
     {
         _sbss = .;
-        __sbss_start__ = _sbss;
+        __bss_start__ = _sbss;
         *(.bss)
         *(.bss.*)
         *(COMMON)
         . = ALIGN(4);
         _ebss = .;
-        _bss_end__ = _ebss;
+        __bss_end__ = _ebss;
         . = ALIGN(4);
         end = .;
         __end__ = .;

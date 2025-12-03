@@ -8,6 +8,8 @@
 #ifndef SYSTICK_H_
 #define SYSTICK_H_
 
+#include <stdint.h>
+
 #define SYST_CSR		*((volatile uint32_t*) 0xE000E010UL)
 #define SYST_RVR		*((volatile uint32_t*) 0xE000E014UL)
 

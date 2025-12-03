@@ -9,11 +9,30 @@
 Task_t tasks[NUM_TASKS] = {
 		{T1_STACK_START, 0, running, Task1Handler},
 		{T2_STACK_START, 0, running, Task2Handler},
+		{T3_STACK_START, 0, running, Task3Handler},
 		{IDLE_STACK_START, 0, running, IdleHandler}
 };
 
+LED_t led1;
+LED_t led2;
+
 int main(void)
 {
+	
+	led1.config.port = PORTG;
+	led1.config.pin = PIN_13;
+	led1.config.state = LED_OFF;
+	led1.config.connetion = CATHODE_COMMON;
+
+	LedInit(&led1);
+
+	led2.config.port = PORTG;
+	led2.config.pin = PIN_14;
+	led2.config.state = LED_OFF;
+	led2.config.connetion = CATHODE_COMMON;
+
+	LedInit(&led2);
+
 	AppInit(tasks);
 	AppStart();
 
@@ -24,14 +43,6 @@ int main(void)
 
 
 void Task1Handler(void){
-	LED_t led1;
-	led1.config.port = PORTG;
-	led1.config.pin = PIN_13;
-	led1.config.state = LED_OFF;
-	led1.config.connetion = CATHODE_COMMON;
-
-	LedInit(&led1);
-
 	while(1){
 		led1.On(&led1);
 		TaskWait(1000);
@@ -41,14 +52,6 @@ void Task1Handler(void){
 }
 
 void Task2Handler(void){
-	LED_t led2;
-	led2.config.port = PORTG;
-	led2.config.pin = PIN_14;
-	led2.config.state = LED_OFF;
-	led2.config.connetion = CATHODE_COMMON;
-
-	LedInit(&led2);
-
 	while(1){
 		led2.On(&led2);
 		TaskWait(500);
@@ -59,7 +62,11 @@ void Task2Handler(void){
 
 void Task3Handler(void){
 	while(1){
-
+		if(!led1.config.state)
+			printf("Led 1 is on.\n");
+		if(!led2.config.state)
+			printf("Led 2 is on.\n");
+		TaskWait(500);
 	}
 }
 

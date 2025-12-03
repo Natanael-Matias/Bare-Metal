@@ -1,15 +1,19 @@
 CC = arm-none-eabi-gcc
 OBJDUMP = arm-none-eabi-objdump
 MACH = cortex-m4
-CFLAGS = -c -mcpu=$(MACH) -mthumb -std=gnu11 -O0
-LDFLAGS =  -nostdlib -T linker_stm32fxx.ld -Wl,-Map=final.map
+CFLAGS = -c -mcpu=$(MACH) -mthumb -mfloat-abi=soft -std=gnu11 -O0
+LDFLAGS =  -mcpu=$(MACH) -mthumb -mfloat-abi=soft --specs=nano.specs -T linker_stm32fxx.ld -Wl,-Map=final.map
+LDFLAGS_SH =  -mcpu=$(MACH) -mthumb -mfloat-abi=soft --specs=rdimon.specs -T linker_stm32fxx.ld -Wl,-Map=final_sh.map
 
 SRC = $(wildcard src/*.c)
 OBJ = $(patsubst src/%.c, obj/%.o, $(SRC))
 DUMP = $(patsubst src/%.c, debug/%.s, $(SRC))
 
-all: $(OBJ) obj/stm32f4xx_startup.o final.elf
+all: $(OBJ) obj/stm32f4xx_startup.o obj/syscalls.o final.elf
 	@echo "finalizado."
+
+semi:$(OBJ) obj/stm32f4xx_startup.o final_sh.elf
+	@echo "Semi-hosting finalizado."
 
 debug: $(DUMP)
 	@echo "finalizado."
@@ -25,8 +29,14 @@ obj/stm32f4xx_startup.o: startup/stm32f4xx_startup.c
 	@echo "Compilando $<..."
 	@$(CC) $(CFLAGS) -Iinc -o $@ $<
 
+obj/syscalls.o:syscalls.c
+	@$(CC) $(CFLAGS) -Iinc -o $@ $<
+
 final.elf:
 	$(CC) $(LDFLAGS) -o $@ obj/*.o
+
+final_sh.elf:
+	$(CC) $(LDFLAGS_SH) -o $@ obj/*.o
 
 obj:
 	mkdir -p obj

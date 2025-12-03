@@ -10,6 +10,9 @@
 
 #include <stdint.h>
 
+//semihosting init function
+extern void initialise_monitor_handles(void);
+
 void IdleHandler(void);
 void Task1Handler(void);
 void Task2Handler(void);

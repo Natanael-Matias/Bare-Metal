@@ -5,6 +5,7 @@
  *      Author: Natanael.matias
  */
 #include <stdint.h>
+#include <stdio.h>
 #include "task_scheduler.h"
 #include "SysTick.h"
 
@@ -12,6 +13,8 @@ static uint8_t currentTask = 0;
 static Task_t* tasks;
 
 void AppInit(Task_t* tasksArray) {
+	initialise_monitor_handles();
+
 	tasks = tasksArray;
 	// Enable processor faults
 	SHCSR |= (USGFAULTENA | BUSFAULTENA | MEMFAULTENA);
@@ -22,6 +25,7 @@ void AppInit(Task_t* tasksArray) {
 
 	// Switch SP to PSP before call the first task
 	SwitchToPSP();
+	printf("Start program...\n");
 }
 
 void AppStart(void){

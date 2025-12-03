@@ -14,6 +14,7 @@ extern uint32_t _sbss;
 extern uint32_t _la_data;
 
 int main(void);
+void __libc_init_array(void);
 
 void    Reset_Handler(void);
 void 	NMI_Handler                    (void) __attribute__ ((weak, alias("Default_Handler")));
@@ -250,6 +251,7 @@ void Reset_Handler(void){
         *pDst++ = 0;
     }
 
+    __libc_init_array();
     // call main()
     main();
 }

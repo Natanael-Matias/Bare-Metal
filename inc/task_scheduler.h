@@ -8,6 +8,8 @@
 #ifndef TASK_SCHEDULER_H_
 #define TASK_SCHEDULER_H_
 
+#include <stdint.h>
+
 #define INTERUPT_DISABLE()		do{ __asm volatile("CPSID I");	}while(0)
 #define INTERRUPT_ENABLE()		do{ __asm volatile("CPSIE I");	}while(0)
 
@@ -16,7 +18,7 @@
 #define 	BUSFAULTENA		(1 << 17)	// BusFault enable bit
 #define 	USGFAULTENA		(1 << 18)	// UsageFault enable bit
 
-#define NUM_TASKS			3//5
+#define NUM_TASKS			4//5
 
 // stack memory calculations
 #define SIZE_TASK_STACK			1024U
